@@ -1,0 +1,25 @@
+=====================================================
+Problem
+=====================================================
+	-Need a more central place for game loop logic
+	-Need way to handle events
+	-Limit FPS
+	-Make rest of game class
+
+=====================================================
+Details
+=====================================================
+	-Cavestory runs at 50 fps
+
+=====================================================
+Solution
+=====================================================
+	-Create game class and implement it
+	-Create input class and implemnt it
+	-Add input to game loop
+	-Limit FPS
+
+=====================================================
+Issues
+=====================================================
+	-No known issues occured

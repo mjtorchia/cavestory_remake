@@ -1,0 +1,28 @@
+Remaking CaveStory 7/12/2016
+
+=====================================================
+Problem
+=====================================================
+	-Need a window on the screen to draw our game
+
+=====================================================
+Details
+=====================================================
+	-A class dedicated entirely to graphics
+	-CaveStory's resolutions is 640x480
+
+=====================================================
+Solution
+=====================================================
+	-Split up header/implentations files
+	-Create graphics class
+	-Call it from main (for now)
+
+
+=====================================================
+Issues
+=====================================================
+	-LNK2019 error
+		-Seems the program doesnt honor the instance of my
+		graphics class
+			-Fixed. Was incorrectly declaring my object

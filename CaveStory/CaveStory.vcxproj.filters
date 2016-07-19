@@ -16,12 +16,21 @@
     <Filter Include="Resource Files\Day Logs">
       <UniqueIdentifier>{43e23ab7-ad57-4635-9df6-070a15e76916}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Content">
+      <UniqueIdentifier>{88e4756e-c42d-4d05-863c-47bfad5b2070}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Content\Sprites">
+      <UniqueIdentifier>{e3792806-e89a-474a-9235-ab8cf3731206}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="Log_7_12_16.txt">
       <Filter>Resource Files\Day Logs</Filter>
     </Text>
     <Text Include="Log_7_14_16.txt">
+      <Filter>Resource Files\Day Logs</Filter>
+    </Text>
+    <Text Include="Log_7_19_16.txt">
       <Filter>Resource Files\Day Logs</Filter>
     </Text>
   </ItemGroup>
@@ -49,5 +58,13 @@
     <ClInclude Include="input.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="sprite.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="MyChar.png">
+      <Filter>Content\Sprites</Filter>
+    </Image>
   </ItemGroup>
 </Project>

@@ -26,3 +26,31 @@ Graphics::~Graphics()
 	SDL_DestroyWindow(this->_window);
 	SDL_DestroyRenderer(this->_renderer);
 }
+
+SDL_Surface* Graphics::loadImage(const std::string &filePath){
+	//this checks to see if it can count the number of times filepath
+	//is in spritesheets. if its 0 then it hasnt been loaded yet
+	if (this->_spriteSheets.count(filePath) == 0){
+		//spritesheet @ filePath is equal to the image that you want to load (filePath of the image)
+		this->_spriteSheets[filePath] = IMG_Load(filePath.c_str());
+	}
+	return this->_spriteSheets[filePath];
+}
+
+void Graphics::blitSurface(SDL_Texture* texture, SDL_Rect* sourceRectangle, SDL_Rect* destinationRectangle){
+	//(renderer that we're copying to, texture that we're copying, what part of the texture we're copying, where on the renderer to put it)
+	SDL_RenderCopy(this->_renderer, texture, sourceRectangle, destinationRectangle);
+}
+
+//Draws content of renderer to screen
+void Graphics::flip(){
+	SDL_RenderPresent(this->_renderer);
+}
+//clears content of renderer
+void Graphics::clear(){
+	SDL_RenderClear(this->_renderer);
+}
+//getter for renderer
+SDL_Renderer* Graphics::getRenderer() const{
+	return this->_renderer;
+}

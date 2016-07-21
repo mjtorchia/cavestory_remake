@@ -1,5 +1,6 @@
 #ifndef GAME_H
 #define GAME_H
+#include "sprite.h"
 
 //forward delcare Graphics
 class Graphics;
@@ -12,6 +13,8 @@ private:
 	void gameLoop();
 	void draw(Graphics &graphics);
 	void update(float elapsedTime);
+
+	Sprite _player;
 };
 
 

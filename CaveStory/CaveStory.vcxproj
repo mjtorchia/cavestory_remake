@@ -75,6 +75,7 @@
     <ClCompile Include="graphics.cpp" />
     <ClCompile Include="input.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="sprite.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="Log_7_12_16.txt" />
@@ -83,6 +84,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="game.h" />
+    <ClInclude Include="globals.h" />
     <ClInclude Include="graphics.h" />
     <ClInclude Include="input.h" />
     <ClInclude Include="sprite.h" />

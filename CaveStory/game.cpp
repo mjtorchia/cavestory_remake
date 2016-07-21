@@ -24,6 +24,10 @@ void Game::gameLoop(){
 	Input _input;
 	SDL_Event _event;	//object that holds whatever event happens for a frame.
 
+
+	//each image of the sprite is 16x16 pixs
+	this->_player = Sprite(_graphics, "MyChar.png", 0, 0, 16, 16, 100, 100);
+
 	int LAST_UPDATE_TIME = SDL_GetTicks();	// gets num of milliseconds since SDL was init
 
 	//start of game loop
@@ -72,10 +76,17 @@ void Game::gameLoop(){
 		//keeps the time updated
 		LAST_UPDATE_TIME = CURRENT_TIME_MS;
 
+		this->draw(_graphics);
+
 
 	}//end of while loop
 }
 void Game::draw(Graphics &graphics){
+	//first clear renderer
+	graphics.clear();
+	//calls the draw function from the sprite class, not the game class
+	this->_player.draw(graphics, 100, 100);
+	graphics.flip();
 }
 void Game::update(float elapsedTime){
 }

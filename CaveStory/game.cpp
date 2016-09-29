@@ -26,9 +26,8 @@ void Game::gameLoop(){
 
 
 	//each image of the sprite is 16x16 pixs
-	this->_player = AnimatedSprite(_graphics, "MyChar.png", 0, 0, 16, 16, 100, 100,100);
-	this->_player.setupAnimation();
-	this->_player.playAnimation("RunLeft");
+	this->_player = Player(_graphics,100,100);
+	
 
 	int LAST_UPDATE_TIME = SDL_GetTicks();	// gets num of milliseconds since SDL was init
 
@@ -65,6 +64,21 @@ void Game::gameLoop(){
 		if (_input.wasKeyPressed(SDL_SCANCODE_ESCAPE) == true){
 			return;
 		}
+		//if you're holding the left key
+		else if (_input.isKeyHeld(SDL_SCANCODE_LEFT) == true)
+		{
+			this->_player.moveLeft();
+		}
+		//if you're holding the right key
+		else if (_input.isKeyHeld(SDL_SCANCODE_RIGHT) == true)
+		{
+			this->_player.moveRight();
+		}
+		//if neither key is being held
+		if (!_input.isKeyHeld(SDL_SCANCODE_LEFT) && !_input.isKeyHeld(SDL_SCANCODE_RIGHT))
+		{
+			this->_player.stopMoving();
+		}
 
 		//keeps track of how long each iteration of the game loop takes
 		const int CURRENT_TIME_MS = SDL_GetTicks();	
@@ -87,7 +101,7 @@ void Game::draw(Graphics &graphics){
 	//first clear renderer
 	graphics.clear();
 	//calls the draw function from the sprite class, not the game class
-	this->_player.draw(graphics, 100, 100);
+	this->_player.draw(graphics);
 	graphics.flip();
 }
 void Game::update(float elapsedTime){

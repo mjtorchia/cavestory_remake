@@ -76,6 +76,7 @@
     <ClCompile Include="graphics.cpp" />
     <ClCompile Include="input.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Player.cpp" />
     <ClCompile Include="sprite.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -83,6 +84,7 @@
     <Text Include="Log_7_14_16.txt" />
     <Text Include="Log_7_19_16.txt" />
     <Text Include="Log_7_22_16.txt" />
+    <Text Include="Log_9_29_16.txt" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="animatedsprite.h" />
@@ -90,6 +92,7 @@
     <ClInclude Include="globals.h" />
     <ClInclude Include="graphics.h" />
     <ClInclude Include="input.h" />
+    <ClInclude Include="Player.h" />
     <ClInclude Include="sprite.h" />
   </ItemGroup>
   <ItemGroup>

@@ -41,14 +41,7 @@ public:
 	*/
 	void draw(Graphics &_graphics, int x, int y);
 
-	/* void setupAnimation()
-	*  a required function that sets up all animations for a sprite
-	*  any class that animates a sprite must have this implemented.
-	*
-	* Virtual because we're not going to be implementing it in the animatedsprite class
-	*/
-	virtual void setupAnimation();
-
+	
 protected:
 	double _timeToUpdate;
 	
@@ -80,7 +73,15 @@ protected:
 	/* void animationsDone
 	*  logic that happens when an animation ends
 	*/
-	virtual void animationDone(std::string currentAnimation);
+	virtual void animationDone(std::string currentAnimation) = 0;
+
+	/* void setupAnimation()
+	*  a required function that sets up all animations for a sprite
+	*  any class that animates a sprite must have this implemented.
+	*
+	* Virtual because we're not going to be implementing it in the animatedsprite class
+	*/
+	virtual void setupAnimation() = 0;
 
 
 

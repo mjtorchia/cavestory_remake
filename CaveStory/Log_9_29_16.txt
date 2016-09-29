@@ -1,0 +1,28 @@
+=====================================================
+Problem
+=====================================================
+	-Need a class to hold player object
+		-Theres player logic scattered all over the code (Refactoring) Ep.6
+			-Check commit history on github to see where changes have been made
+	-Need to have the player move around the screen
+=====================================================
+Details
+=====================================================
+	-Player timeToUpdate - 100 time
+	-Start player facing "Right"
+
+=====================================================
+Solution
+=====================================================
+	-Make setupAnimations protected in AnimatedSprite
+	-Make setupAnimations and animationDone pure vitrual in AnimatedSprite
+	-Create the players class
+	-Add global enum for directions
+	-Add 2 new animations: Idle left/right
+	-Add movment to the player class
+	-Use the movment functions in the game class with input
+
+
+=====================================================
+Issues
+=====================================================

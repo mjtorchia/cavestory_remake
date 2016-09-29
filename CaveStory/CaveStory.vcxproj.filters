@@ -36,6 +36,9 @@
     <Text Include="Log_7_22_16.txt">
       <Filter>Resource Files\Day Logs</Filter>
     </Text>
+    <Text Include="Log_9_29_16.txt">
+      <Filter>Resource Files\Day Logs</Filter>
+    </Text>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="graphics.cpp">
@@ -56,6 +59,9 @@
     <ClCompile Include="animatedsprite.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="graphics.h">
@@ -74,6 +80,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="animatedsprite.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

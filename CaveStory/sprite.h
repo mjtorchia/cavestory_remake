@@ -4,6 +4,12 @@
 #include <SDL.h>
 #include <string>
 
+/////////////////////////////////
+//Sprite->AnimatedSprite->Player
+/////////////////////////////////
+
+
+
 //forward delcare
 class Graphics;
 
@@ -23,9 +29,10 @@ public:
 protected:
 	SDL_Rect _sourceRect;
 	SDL_Texture* _spriteSheet;
-private:
 	float _x;
 	float _y;
+private:
+	
 };
 
 #endif

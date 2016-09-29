@@ -119,14 +119,12 @@ void AnimatedSprite::draw(Graphics &_graphics, int x, int y)
 	}
 }
 
-void AnimatedSprite::animationDone(std::string currentAnimation)
-{
 
-}
 
 //implemented in everything that is inheriting off of animated sprite
-void AnimatedSprite::setupAnimation()
+/*void AnimatedSprite::setupAnimation()
 {
 	this->addAnimation(3, 0, 0, "RunLeft", 16, 16, Vector2(0, 0));
-}
+	this->addAnimation(3,0,16,"RunRight",16,16,Vector2(0,0));
+}*/
 	

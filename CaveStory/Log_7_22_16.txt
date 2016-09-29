@@ -1,0 +1,18 @@
+ =====================================================
+Problem
+=====================================================
+	-Need to animate sprites
+
+=====================================================
+Details
+=====================================================
+	-3 frames per direction
+
+=====================================================
+Solution
+=====================================================
+	-Fix global width variable
+	-Create global Vector2 struct
+	-Create the animated sprite class
+	-Use animated sprite in the game class instead of sprite
+	

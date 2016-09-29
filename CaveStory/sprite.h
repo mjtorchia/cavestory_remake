@@ -20,10 +20,10 @@ public:
 	virtual ~Sprite();
 	virtual void update();
 	void draw(Graphics &_graphics, int x, int y);
-private:
+protected:
 	SDL_Rect _sourceRect;
 	SDL_Texture* _spriteSheet;
-
+private:
 	float _x;
 	float _y;
 };

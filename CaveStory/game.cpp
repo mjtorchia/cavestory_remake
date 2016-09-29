@@ -26,7 +26,9 @@ void Game::gameLoop(){
 
 
 	//each image of the sprite is 16x16 pixs
-	this->_player = Sprite(_graphics, "MyChar.png", 0, 0, 16, 16, 100, 100);
+	this->_player = AnimatedSprite(_graphics, "MyChar.png", 0, 0, 16, 16, 100, 100,100);
+	this->_player.setupAnimation();
+	this->_player.playAnimation("RunLeft");
 
 	int LAST_UPDATE_TIME = SDL_GetTicks();	// gets num of milliseconds since SDL was init
 
@@ -89,4 +91,5 @@ void Game::draw(Graphics &graphics){
 	graphics.flip();
 }
 void Game::update(float elapsedTime){
+	this->_player.update(elapsedTime);
 }

@@ -4,6 +4,7 @@
 #include <string>
 #include <SDL_image.h>
 #include <iostream>
+#include <SDL.h>
 using namespace std;
 
 //forward delcaring. Allows for me to use my pointers below

@@ -22,6 +22,9 @@
     <Filter Include="Content\Sprites">
       <UniqueIdentifier>{e3792806-e89a-474a-9235-ab8cf3731206}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Content\Background">
+      <UniqueIdentifier>{0130546d-7e8c-4480-a6d9-70959b05e9ff}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="Log_7_12_16.txt">
@@ -37,6 +40,9 @@
       <Filter>Resource Files\Day Logs</Filter>
     </Text>
     <Text Include="Log_9_29_16.txt">
+      <Filter>Resource Files\Day Logs</Filter>
+    </Text>
+    <Text Include="Log_9_30_16.txt">
       <Filter>Resource Files\Day Logs</Filter>
     </Text>
   </ItemGroup>
@@ -62,6 +68,9 @@
     <ClCompile Include="Player.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Level.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="graphics.h">
@@ -85,10 +94,16 @@
     <ClInclude Include="Player.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="level.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="MyChar.png">
       <Filter>Content\Sprites</Filter>
+    </Image>
+    <Image Include="bkBlue.png">
+      <Filter>Content\Background</Filter>
     </Image>
   </ItemGroup>
 </Project>

@@ -1,0 +1,22 @@
+=====================================================
+Problem
+=====================================================
+	-Need a way to represent a "level" or "map"
+	-Need to draw background to the screen
+=====================================================
+Details
+=====================================================
+	-Background is bkBlue
+	-Backgrounds are 64x64 px
+=====================================================
+Solution
+=====================================================
+	-Create the level class
+	-Create new directory for background
+	-Convert bkBlue.pbm to bkBlue.png
+	-Add the level to the game class
+	-Fix Quote's transparency
+=====================================================
+Issues
+=====================================================
+	-No known issues occured

@@ -1,6 +1,7 @@
 #ifndef GAME_H
 #define GAME_H
 #include "Player.h"
+#include "level.h"
 
 //forward delcare Graphics
 class Graphics;
@@ -15,6 +16,7 @@ private:
 	void update(float elapsedTime);
 
 	Player _player;
+	Level _level; 
 };
 
 

@@ -25,8 +25,9 @@ void Game::gameLoop(){
 	SDL_Event _event;	//object that holds whatever event happens for a frame.
 
 
-	//each image of the sprite is 16x16 pixs
+	//init player and level
 	this->_player = Player(_graphics,100,100);
+	this->_level = Level("map 1", Vector2(100, 100), _graphics);
 	
 
 	int LAST_UPDATE_TIME = SDL_GetTicks();	// gets num of milliseconds since SDL was init
@@ -100,10 +101,14 @@ void Game::gameLoop(){
 void Game::draw(Graphics &graphics){
 	//first clear renderer
 	graphics.clear();
+
+	this->_level.draw(graphics);
+
 	//calls the draw function from the sprite class, not the game class
 	this->_player.draw(graphics);
 	graphics.flip();
 }
 void Game::update(float elapsedTime){
 	this->_player.update(elapsedTime);
+	this->_level.update(elapsedTime);
 }

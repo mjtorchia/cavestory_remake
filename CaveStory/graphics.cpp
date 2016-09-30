@@ -39,6 +39,7 @@ SDL_Surface* Graphics::loadImage(const std::string &filePath){
 }
 
 void Graphics::blitSurface(SDL_Texture* texture, SDL_Rect* sourceRectangle, SDL_Rect* destinationRectangle){
+	
 	//(renderer that we're copying to, texture that we're copying, what part of the texture we're copying, where on the renderer to put it)
 	SDL_RenderCopy(this->_renderer, texture, sourceRectangle, destinationRectangle);
 }

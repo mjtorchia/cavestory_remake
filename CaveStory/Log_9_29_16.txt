@@ -22,7 +22,6 @@ Solution
 	-Add movment to the player class
 	-Use the movment functions in the game class with input
 
-
 =====================================================
 Issues
 =====================================================

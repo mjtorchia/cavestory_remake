@@ -79,6 +79,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="sprite.cpp" />
+    <ClCompile Include="tinyxml2.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="Log_7_12_16.txt" />
@@ -97,10 +98,15 @@
     <ClInclude Include="level.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="sprite.h" />
+    <ClInclude Include="tinyxml2.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="bkBlue.png" />
     <Image Include="MyChar.png" />
+    <Image Include="PrtCave.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Map 1.tmx" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

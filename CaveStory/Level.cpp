@@ -1,6 +1,7 @@
 #include "level.h"
 #include "graphics.h"
 #include <SDL.h>
+#include "globals.h"
 
 Level::Level()
 {
@@ -43,10 +44,10 @@ void Level::draw(Graphics &_grahpics)
 	{
 		for (int y = 0; y < this->_size.y / 64; y++) //(length of level)/64 is how many times this will run
 		{
-			destRect.x = x * 64; //this will have it draw the first time starting at 0 then it will offset by 64 every time
-			destRect.y = y * 64;
-			destRect.w = 64;
-			destRect.h = 64;
+			destRect.x = x * 64 * globals::SPRITE_SCALE; //this will have it draw the first time starting at 0 then it will offset by 64 every time
+			destRect.y = y * 64 * globals::SPRITE_SCALE;
+			destRect.w = 64 * globals::SPRITE_SCALE;
+			destRect.h = 64 * globals::SPRITE_SCALE;
 			_grahpics.blitSurface(this->_backgroundTexture, &sourceRect, &destRect);
 		}
 	}

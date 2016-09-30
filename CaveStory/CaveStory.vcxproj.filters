@@ -25,6 +25,12 @@
     <Filter Include="Content\Background">
       <UniqueIdentifier>{0130546d-7e8c-4480-a6d9-70959b05e9ff}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Content\Tilesets">
+      <UniqueIdentifier>{2a6bae99-bc9f-414a-89c0-dc7f3380a441}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Content\Maps">
+      <UniqueIdentifier>{05cb40d2-ab26-4356-8915-3239dccf353c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="Log_7_12_16.txt">
@@ -71,6 +77,9 @@
     <ClCompile Include="Level.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="tinyxml2.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="graphics.h">
@@ -97,6 +106,9 @@
     <ClInclude Include="level.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="tinyxml2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="MyChar.png">
@@ -105,5 +117,13 @@
     <Image Include="bkBlue.png">
       <Filter>Content\Background</Filter>
     </Image>
+    <Image Include="PrtCave.png">
+      <Filter>Content\Tilesets</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Map 1.tmx">
+      <Filter>Content\Maps</Filter>
+    </None>
   </ItemGroup>
 </Project>

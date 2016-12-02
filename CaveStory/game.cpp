@@ -27,7 +27,7 @@ void Game::gameLoop(){
 
 	//init player and level
 	this->_player = Player(_graphics,100,100);
-	this->_level = Level("map 1", Vector2(100, 100), _graphics);
+	this->_level = Level("Map 1", Vector2(100, 100), _graphics);
 	
 
 	int LAST_UPDATE_TIME = SDL_GetTicks();	// gets num of milliseconds since SDL was init

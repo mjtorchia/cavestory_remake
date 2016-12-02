@@ -2,6 +2,12 @@
 #include "graphics.h"
 #include <SDL.h>
 #include "globals.h"
+#include "tinyxml2.h"
+#include <sstream>
+#include <algorithm>
+#include <cmath>
+
+using namespace tinyxml2;
 
 Level::Level()
 {
@@ -21,11 +27,151 @@ Level::~Level()
 
 }
 
-void Level::loadMap(std::string mapName, Graphics &_grahpics)
+
+//****************************************************************************//
+//very important
+//review multiple times if needed
+//****************************************************************************//
+void Level::loadMap(std::string mapName, Graphics &_graphics)
 {
-	//TEMPORARY CODE TO LOAD THE BACKGROUND
-	this->_backgroundTexture = SDL_CreateTextureFromSurface(_grahpics.getRenderer(), _grahpics.loadImage("bkBlue.png"));
-	this->_size = Vector2(1280, 960);
+	//Parse the .tmx file
+	XMLDocument doc;	//entire XML doc
+	std::stringstream ss;
+	ss << mapName << ".tmx";
+	doc.LoadFile(ss.str().c_str());
+
+	XMLElement* mapNode = doc.FirstChildElement("map");	//selects the first child element from the doc variable
+
+	//Get width and height of the whole map and store it in the _size
+	int width;
+	int height;
+	mapNode->QueryIntAttribute("width", &width); //will search for the "width" element and then store it in our width variable
+	mapNode->QueryIntAttribute("height", &height);
+	this->_size = Vector2(width, height); //at this point we have the size of our map
+
+	//Get width and height of the tiles and store it in our tilesize variable
+	int tileWidth;
+	int tileHeight;
+	mapNode->QueryIntAttribute("tilewidth", &tileWidth); //will search for the "width" element and then store it in our width variable
+	mapNode->QueryIntAttribute("tileheight", &tileHeight);
+	this->_tileSize = Vector2(tileWidth, tileHeight); //at this piont we have the size our our tiles
+
+	//Load the tilesets
+	XMLElement *pTileset = mapNode->FirstChildElement("tileset");
+	if (pTileset != NULL)
+	{
+		while (pTileset)
+		{
+			int firstgid;
+			const char* source = pTileset->FirstChildElement("image")->Attribute("source");	//gets us the attribute (source) of the child element (image). think of linked lists
+			char* path;
+			std::stringstream ss;
+			ss << source;
+			pTileset->QueryIntAttribute("firstgid", &firstgid);
+			SDL_Texture *tex = SDL_CreateTextureFromSurface(_graphics.getRenderer(), _graphics.loadImage(ss.str()));
+			this->_tilesets.push_back(Tileset(tex, firstgid));
+			//Tilesets are loaded
+			pTileset = pTileset->NextSiblingElement("tileset");
+		}
+	}
+
+	//Loading the layers
+	XMLElement *pLayer = mapNode->FirstChildElement("layer");
+	if (pLayer != NULL)
+	{
+		while (pLayer)
+		{
+			//Loading the data element
+			XMLElement *pData = pLayer->FirstChildElement("data");
+			if (pData!=NULL)
+			{
+				while (pData)
+				{
+					//Loading the tile element
+					XMLElement *pTile = pData->FirstChildElement("tile");
+					if (pTile != NULL)
+					{
+						int tileCoutner = 0;
+						while (pTile)
+						{
+							//Build each individual tile here
+							//If gid=0 no tile should be drawn. Continue loop
+							if (pTile->IntAttribute("gid") == 0)
+							{
+								tileCoutner++;
+								if (pTile->NextSiblingElement("tile"))
+								{
+									pTile = pTile->NextSiblingElement("tile");
+									continue;
+								}
+								else
+								{
+									break;
+								}
+							}
+							//get the tileset for this specific gid
+							int gid = pTile->IntAttribute("gid");
+							Tileset tls;
+							for (int i= 0; i < this->_tilesets.size(); i++)
+							{
+								//not sure I understand this
+								if (this->_tilesets[i].FirstGid <= gid)
+								{
+									//This is the tileset we want
+									tls = this->_tilesets.at(i);
+									break;
+								}
+							}
+
+							if (tls.FirstGid == -1)
+							{
+								//No tileset was found for this gid
+								tileCoutner++;
+								if (pTile->NextSiblingElement("tile"))
+								{
+									pTile = pTile->NextSiblingElement("tile");
+									continue;
+								}
+								else
+								{
+									break;
+								}
+							}
+
+							//Get the position of the tile in the level
+							int xx = 0;
+							int yy = 0;
+							xx = tileCoutner % width;	//which gid we're on % width
+							xx *= tileWidth; //times that by 16 and this gives us the x cord to place the tile on the map
+							yy += tileHeight *(tileCoutner / width);	//gives us the y cord to place the tile on the map
+							Vector2 finalTilePosition = Vector2(xx, yy);
+
+							//Calcualte the position of the tile in the tileset
+							int tilesetWidth;
+							int tilesetHeight;
+							SDL_QueryTexture(tls.Texture, NULL, NULL, &tilesetWidth, &tilesetHeight);
+							int tsxx = gid % (tilesetWidth / tileWidth) - 1; //(first gid) 34 % (256/16) -1 = 1 
+							tsxx *= tileWidth; // 1*16
+							int tsyy = 0;
+							int amount = (gid / (tilesetWidth / tileWidth));
+							tsyy = tileHeight * amount;
+							Vector2 finalTilesetPosition = Vector2(tsxx, tsyy);
+
+							//Build the actual tile and add it to the level's tile list
+							Tile tile(tls.Texture, Vector2(tileWidth, tileHeight), finalTilesetPosition, finalTilePosition);
+							this->_tileList.push_back(tile);
+							tileCoutner++;
+
+							pTile = pTile->NextSiblingElement("tile");
+							
+						}
+					}
+					pData = pData->NextSiblingElement("data");
+				}
+			}
+			pLayer = pLayer->NextSiblingElement("layer");
+		}
+	}
 }
 
 void Level::update(int elaspedTime)
@@ -35,21 +181,9 @@ void Level::update(int elaspedTime)
  
 void Level::draw(Graphics &_grahpics)
 {
-	/*The background (bkBlue) is 64x64 and we want the entire image to be our background
-	Since the image is smaller than our background we need to loop and draw it multiple times
-	to get the desired result*/
-	SDL_Rect sourceRect = {0,0,64,64 };
-	SDL_Rect destRect;
-	for (int x = 0; x < this->_size.x / 64; x++) //(width of level)/64 is how many times this will run
+	for (int i = 0; i < this->_tileList.size(); i++)
 	{
-		for (int y = 0; y < this->_size.y / 64; y++) //(length of level)/64 is how many times this will run
-		{
-			destRect.x = x * 64 * globals::SPRITE_SCALE; //this will have it draw the first time starting at 0 then it will offset by 64 every time
-			destRect.y = y * 64 * globals::SPRITE_SCALE;
-			destRect.w = 64 * globals::SPRITE_SCALE;
-			destRect.h = 64 * globals::SPRITE_SCALE;
-			_grahpics.blitSurface(this->_backgroundTexture, &sourceRect, &destRect);
-		}
+		this->_tileList.at(i).draw(_grahpics);
 	}
 }
 

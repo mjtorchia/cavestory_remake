@@ -84,6 +84,7 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="Log_11_17_16.txt" />
+    <Text Include="Log_12_2_16.txt" />
     <Text Include="Log_7_12_16.txt" />
     <Text Include="Log_7_14_16.txt" />
     <Text Include="Log_7_19_16.txt" />
@@ -99,6 +100,7 @@
     <ClInclude Include="input.h" />
     <ClInclude Include="level.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="rectangle.h" />
     <ClInclude Include="sprite.h" />
     <ClInclude Include="Tile.h" />
     <ClInclude Include="tinyxml2.h" />

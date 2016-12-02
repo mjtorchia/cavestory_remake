@@ -8,7 +8,7 @@ class Player :public AnimatedSprite
 {
 public:
 	Player();
-	Player(Graphics &_graphics, float x, float y);
+	Player(Graphics &_graphics, Vector2 spawnPoint);
 	void draw(Graphics &_graphics);
 	void update(float elapsedTime);
 	
@@ -29,9 +29,17 @@ public:
 
 	virtual void animationDone(std::string currentAnimations);
 	virtual void setupAnimation();
+
+	void handleTileCollision(std::vector<Rectangle> &others);
+
+	//getter functions
+	const float getX() const;
+	const float getY() const;
+
 private:
 	float _dx, _dy; //change in x and change in y
 	Direction _facing;
+	bool _grounded; //true if on ground, false if in the air or falling
 
 };
 

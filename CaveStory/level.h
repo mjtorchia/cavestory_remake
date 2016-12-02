@@ -4,6 +4,7 @@
 #include <string>
 #include "Tile.h"
 #include <vector>
+#include "rectangle.h"
 
 struct SDL_Rect;
 struct Tileset;
@@ -18,15 +19,21 @@ public:
 	~Level();
 	void update(int elapsedTime);
 	void draw(Graphics &_graphics);
+
+	std::vector<Rectangle> checkTileCollision(const Rectangle &other);
+
+	const Vector2 getPlayerSpawnPonit()const;
 private:
 	std::string _mapName;
 	Vector2 _spawnPoint;
+
 	Vector2 _size;	//width and height of entire map
 	Vector2 _tileSize;
 	SDL_Texture* _backgroundTexture;
 
 	std::vector<Tile> _tileList;
 	std::vector<Tileset> _tilesets;
+	std::vector<Rectangle> _collisionRects;
 	
 
 	/* void loadMap

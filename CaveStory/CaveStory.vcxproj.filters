@@ -54,6 +54,9 @@
     <Text Include="Log_11_17_16.txt">
       <Filter>Resource Files\Day Logs</Filter>
     </Text>
+    <Text Include="Log_12_2_16.txt">
+      <Filter>Resource Files\Day Logs</Filter>
+    </Text>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="graphics.cpp">
@@ -116,6 +119,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Tile.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="rectangle.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

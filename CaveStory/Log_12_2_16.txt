@@ -1,0 +1,38 @@
+=====================================================
+Problem
+=====================================================
+	-Need gravity to be applied to the player
+	-Collision
+	-Spawn point in Tiled
+=====================================================
+Details
+=====================================================
+	-Gravity constants
+		-GRAVITY = 0.002f;
+		-GRAVITY_CAP = 0.8f;
+	-Spawn point: 280,252
+=====================================================
+Solution
+=====================================================
+	-Add gravity to player
+	-Create "side" namespace in global
+	-Create rectangle class to use for collision
+	-Add collisionsRects vector to level
+	-Draw the collisions in Tiled
+	-Parse the collisions
+	-Check the tile collisions
+	-Bounding box in sprite class
+	-getCollisionSide in sprite class
+	-handleTileCollision in player class
+	-Add it all to game class
+	-Draw spawn point in Tiled
+	-Parse it and save it in spawn point
+	-Change spawn point in game class ot use it
+=====================================================
+Issues
+=====================================================
+	
+
+
+
+	

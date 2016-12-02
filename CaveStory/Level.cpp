@@ -172,11 +172,89 @@ void Level::loadMap(std::string mapName, Graphics &_graphics)
 			pLayer = pLayer->NextSiblingElement("layer");
 		}
 	}
+
+	//Parse out the collisions 
+	XMLElement *pObjectGroup = mapNode->FirstChildElement("objectgroup");
+	if (pObjectGroup != NULL)
+	{
+		while (pObjectGroup)
+		{
+			const char* name = pObjectGroup->Attribute("name");
+			std::stringstream ss;
+			ss << name;
+			if (ss.str() == "collisions")
+			{
+				XMLElement *pObject = pObjectGroup->FirstChildElement("object");
+				if (pObject != NULL)
+				{
+					while (pObject)
+					{
+						float x;
+						float y;
+						float width;
+						float height;
+						//get the values of each from the current pObject
+						x = pObject->FloatAttribute("x");
+						y = pObject->FloatAttribute("y"); 
+						width = pObject->FloatAttribute("width");
+						height = pObject->FloatAttribute("height");
+						//add this new collision rectangle to the collsion rectangle vector
+						this->_collisionRects.push_back(Rectangle(
+							std::ceil(x)*globals::SPRITE_SCALE,
+							std::ceil(y)*globals::SPRITE_SCALE,
+							std::ceil(width)*globals::SPRITE_SCALE,
+							std::ceil(height)*globals::SPRITE_SCALE));
+
+						pObject = pObject->NextSiblingElement("object");
+					}
+				}
+			}
+			//other object groups go here with an else if (ss.str()=="whatever")
+			else if (ss.str() == "spawnpoints"){
+				XMLElement *pObject = pObjectGroup->FirstChildElement("object");
+				if (pObject != NULL)
+				{
+					while (pObject)
+					{
+						float x = pObject->FloatAttribute("x");
+						float y = pObject->FloatAttribute("y");
+						const char* name = pObject->Attribute("name");
+						//get the values for x, y, and name
+						std::stringstream ss;
+						ss << name;
+						//check if "name" is player. checks if we're parsing the right information
+						if (ss.str() == "player")
+						{
+							//set the spawn point eqaul to the XML information just parsed
+							this->_spawnPoint = Vector2(std::ceil(x)*globals::SPRITE_SCALE, std::ceil(y)*globals::SPRITE_SCALE);
+						}
+						pObject = pObject->NextSiblingElement("object");
+					}
+				}
+			}
+			pObjectGroup = pObjectGroup->NextSiblingElement("objectgroup");
+		}
+	}
 }
 
 void Level::update(int elaspedTime)
 {
 	
+}
+
+//returns every collision rectangle we're colliding with
+std::vector<Rectangle> Level::checkTileCollision(const Rectangle &other)
+{
+	std::vector<Rectangle> others;
+	for (int i = 0; i < this->_collisionRects.size(); i++)
+	{
+		//if one of the collisionrects collides with &other. add it to the other list
+		if (this->_collisionRects.at(i).colidesWith(other))
+		{
+			others.push_back(this->_collisionRects.at(i));
+		}
+	}
+	return others;
 }
  
 void Level::draw(Graphics &_grahpics)
@@ -187,3 +265,7 @@ void Level::draw(Graphics &_grahpics)
 	}
 }
 
+const Vector2 Level::getPlayerSpawnPonit()const
+{
+	return this->_spawnPoint;
+}

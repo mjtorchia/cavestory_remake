@@ -26,8 +26,9 @@ void Game::gameLoop(){
 
 
 	//init player and level
-	this->_player = Player(_graphics,100,100);
 	this->_level = Level("Map 1", Vector2(100, 100), _graphics);
+	this->_player = Player(_graphics,_level.getPlayerSpawnPonit());
+	
 	
 
 	int LAST_UPDATE_TIME = SDL_GetTicks();	// gets num of milliseconds since SDL was init
@@ -111,4 +112,13 @@ void Game::draw(Graphics &graphics){
 void Game::update(float elapsedTime){
 	this->_player.update(elapsedTime);
 	this->_level.update(elapsedTime);
+
+	//Check collisions
+	std::vector<Rectangle> other;
+	//checkTileCollisions will check whatever we pass with all of the level collsion rectangles and return a vector with all of the collisions
+	if ((other = this->_level.checkTileCollision(this->_player.getBoundingBox())).size() > 0)
+	{
+		//player collided with at least one tile. this will move the player accordingly
+		this->_player.handleTileCollision(other);
+	}
 }

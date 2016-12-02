@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="20" height="16" tilewidth="16" tileheight="16" nextobjectid="1">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="20" height="16" tilewidth="16" tileheight="16" nextobjectid="18">
  <tileset firstgid="1" name="PrtCave" tilewidth="16" tileheight="16" tilecount="80" columns="16">
   <image source="PrtCave.png" width="256" height="80"/>
  </tileset>
@@ -651,4 +651,23 @@
    <tile gid="0"/>
   </data>
  </layer>
+ <objectgroup name="collisions">
+  <object id="1" x="145" y="16" width="14.6667" height="15.3333"/>
+  <object id="2" x="144.333" y="64.3333" width="15.3333" height="15.6667"/>
+  <object id="3" x="112.667" y="80.3333" width="78" height="15"/>
+  <object id="5" x="53.3333" y="23.3333" width="25.3333" height="119.333"/>
+  <object id="6" x="52.6667" y="124.667" width="55.3333" height="20"/>
+  <object id="8" x="106.667" y="124.667" width="4" height="58.6667"/>
+  <object id="9" x="128" y="144.667" width="46.6667" height="16"/>
+  <object id="10" x="193" y="144.75" width="14.5" height="14.25"/>
+  <object id="11" x="208.25" y="128" width="31.25" height="15.75"/>
+  <object id="13" x="242" y="74" width="15" height="82.5"/>
+  <object id="14" x="109" y="186" width="107.5" height="14.5"/>
+  <object id="15" x="207" y="158" width="17.5" height="28"/>
+ </objectgroup>
+ <objectgroup color="#00ff00" name="spawnpoints">
+  <object id="17" name="player" x="132.5" y="70.5" width="4.5" height="5">
+   <ellipse/>
+  </object>
+ </objectgroup>
 </map>

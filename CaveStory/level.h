@@ -5,6 +5,7 @@
 #include "Tile.h"
 #include <vector>
 #include "rectangle.h"
+#include "slope.h"
 
 struct SDL_Rect;
 struct Tileset;
@@ -21,6 +22,7 @@ public:
 	void draw(Graphics &_graphics);
 
 	std::vector<Rectangle> checkTileCollision(const Rectangle &other);
+	std::vector<Slope> checkSlopeCollision(const Rectangle &other);
 
 	const Vector2 getPlayerSpawnPonit()const;
 private:
@@ -34,6 +36,7 @@ private:
 	std::vector<Tile> _tileList;
 	std::vector<Tileset> _tilesets;
 	std::vector<Rectangle> _collisionRects;
+	std::vector<Slope> _slopes;
 	
 
 	/* void loadMap

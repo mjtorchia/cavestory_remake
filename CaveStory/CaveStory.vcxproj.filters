@@ -57,6 +57,9 @@
     <Text Include="Log_12_2_16.txt">
       <Filter>Resource Files\Day Logs</Filter>
     </Text>
+    <Text Include="Log_12_3_16.txt">
+      <Filter>Resource Files\Day Logs</Filter>
+    </Text>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="graphics.cpp">
@@ -122,6 +125,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="rectangle.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="utile.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="slope.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

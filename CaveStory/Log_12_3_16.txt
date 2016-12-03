@@ -1,0 +1,35 @@
+=====================================================
+Problem
+=====================================================
+	-Need to be able to run up and down slopes
+	-Currently only have rectanglar "tile" collisions
+	-Need to be able to jump
+=====================================================
+Details
+=====================================================
+	-Polyline slopes
+	-const float JUMP_SPEED =0.7f;
+
+=====================================================
+Solution
+=====================================================
+	-New object layer in tiled called "slopes"
+	-Draw slopes with the polyline tool
+	-Create utiltiy class
+	-Create slope class
+	-Create lits of slopes in level class 
+	-Parse them out of the .tmx file
+	-Handle slope collision
+	-Player jumping
+=====================================================
+Issues
+=====================================================
+	-NEED TO DEBUG SLOPES (12/3/16)
+		-The slope functionality is not working in game as intended (12/3/16)
+			-No Collision (12/3/16)
+	-NEED TO DEBUG JUMP FUNCTION (12/3/16)
+		-Unresponsive (12/3/16)
+
+
+
+	

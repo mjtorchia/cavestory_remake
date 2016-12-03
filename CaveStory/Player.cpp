@@ -1,11 +1,13 @@
 #include "Player.h"
 #include "graphics.h"
+#include "slope.h"
 
 namespace player_constants
 {
 	const float WALK_SPEED = 0.2f;
 	const float GRAVITY = 0.002f;
 	const float GRAVITY_CAP = 0.8f;
+	const float JUMP_SPEED = 0.7f;
 }
 
 Player::Player()
@@ -63,6 +65,16 @@ void Player::stopMoving()
 	this->playAnimation(this->_facing == RIGHT ? "IdleRight" : "IdleLeft");
 }
 
+void Player::jump()
+{
+	if (this->_grounded)
+	{
+		this->_dy = 0;
+		this->_dy -= player_constants::JUMP_SPEED;
+		this->_grounded = false;
+	}
+}
+
 //void handleTileCollisions
 //handles collisions with all tiles the player is colliding with
 void Player::handleTileCollision(std::vector<Rectangle> &other)
@@ -76,11 +88,19 @@ void Player::handleTileCollision(std::vector<Rectangle> &other)
 			switch (collisionSide)
 			{
 			case sides::TOP:
+				this->_dy = 0; //this resets all gravity because we hit something. there is no change is y anymore
 				this->_y = other.at(i).getBottom() + 1; /*if the top collides, get the value of the collision rectangle at the bottom\
 														and then set the players y value to that. this gives the illusion of collision because
 														the player will go through the collision rectangle 1 px and this will set it exactly to where
 														it collided keeping it from going through*/
-				this->_dy = 0; //this resets all gravity because we hit something. there is no change is y anymore
+				if (this->_grounded)
+				{
+					
+					this->_dx = 0;
+					this->_x -= this->_facing == RIGHT ? 1.0f : -1.0f;
+					
+				}
+				
 				break;
 			case sides::BOTTOM:
 				this->_y = other.at(i).getTop() - this->_boundingBox.getHeight() - 1; /*same idea as above except we need to minus the players height
@@ -99,6 +119,31 @@ void Player::handleTileCollision(std::vector<Rectangle> &other)
 		}
 	}
 	
+}
+//void handleSlopeCollision
+//handles collision with all slopes the player is colliding with
+void Player::handleSlopeCollision(std::vector<Slope> &others)
+{
+	for (int i = 0; i < others.size(); i++)
+	{
+		//Calculate where on the slope the players bottom center is touching
+		//and use y=mx+b to figure out the y position to place him at
+		//first calculate "b" using one of the points (b=y-mx)
+		int b = (others.at(i).getP1().y - (others.at(i).getSlope()*fabs(static_cast<float>(others.at(i).getP1().x))));
+
+		//Now get players center x
+		int centerX = this->_boundingBox.getCenterX();
+
+		//Now pass that X intot he equation y=mx+b using our found b and x to get hte new y position
+		int newY = (others.at(i).getSlope() * centerX) + b-8; //y=mx+b //8 is a temp fix to a prob
+
+		//reposition the player to the correct y
+		if (this->_grounded)
+		{
+			this->_y = newY - this->_boundingBox.getHeight();
+			this->_grounded = true;
+		}
+	}
 }
 void Player::update(float elapstedTime)
 {

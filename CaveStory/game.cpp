@@ -76,6 +76,11 @@ void Game::gameLoop(){
 		{
 			this->_player.moveRight();
 		}
+
+		if (_input.wasKeyPressed(SDL_SCANCODE_Z) == true)
+		{
+			this->_player.jump();
+		}
 		//if neither key is being held
 		if (!_input.isKeyHeld(SDL_SCANCODE_LEFT) && !_input.isKeyHeld(SDL_SCANCODE_RIGHT))
 		{
@@ -120,5 +125,11 @@ void Game::update(float elapsedTime){
 	{
 		//player collided with at least one tile. this will move the player accordingly
 		this->_player.handleTileCollision(other);
+	}
+	//Check slopes
+	std::vector<Slope> otherSlopes;
+	if ((otherSlopes = this->_level.checkSlopeCollision(this->_player.getBoundingBox())).size() > 0)
+	{
+		this->_player.handleSlopeCollision(otherSlopes);
 	}
 }
